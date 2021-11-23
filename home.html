@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<title>Currency_Converter by Ramgopal</title>
+	<style>
+		body, html{
+			height: 100%;
+			background-image: url('currency.jpg');
+			background-repeat:no-repeat;
+			background-size: cover;
+			background-position: center;
+			padding: 0;
+			margin: 0;
+
+		}
+		div.box2{
+
+			background-image: url('2currency.jpg');
+			position: fixed;
+  			top: 120px;
+  			left: 300px;
+		}
+
+		.box1
+		{
+			width:500px;
+			height: 150px;
+			margin: 4px;
+			border: 1px solid white;
+			border-radius: 4px;
+			color: black;
+			background-color: pink;
+		}
+
+		#from{
+			top: 50px;
+		}
+		#fromAmount{
+			top: 50px;
+		}
+		.desin{
+			background-color: lightpink;
+			opacity: 0.8;
+			font-size: 108%;
+		}
+		h2{
+			text-align: center;
+			font-size: 35px;
+		}
+		.hed{
+			margin-top: 30px;
+			margin-left: 25%;
+			color: pink;
+
+		}
+		.bak{
+			background: #0000008a;
+		}
+		table{
+			margin: 0px auto;
+		}
+		.red{
+			color: white;
+			margin-top: 50px;
+            margin-right:40px;
+            margin-left: 40px;
+		}
+		.ramu{
+			padding: 5px;
+		}
+		.ght{
+			background-color: blue;
+			height: 45px;
+			text-align: center;
+		}
+		.copy{
+			color: white;
+		}
+		</style>
+		<script>
+			function convertCurrency()
+			{
+				var from = document.getElementById("from").value;
+				var to = document.getElementById("to").value;
+				var xmlhttp = new XMLHttpRequest();
+				var url = "http://data.fixer.io/api/latest?access_key=029cb865a3242fbcac51a5b51e296160&format=" + "," + to;
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send();
+				xmlhttp.onreadystatechange = function(){
+					if (xmlhttp.readyState == 4 && xmlhttp.status ==200) 
+					{
+						var result = xmlhttp.responseText;
+						// alert(result);
+						var jsResult = JSON.parse(result);
+						var oneUnit = jsResult.rates[to]/jsResult.rates[from];
+						var amt = document.getElementById("fromAmount").value;
+						document.getElementById("toAmount").value = oneUnit*amt;
+					}
+				}
+			}
+		</script>
+</head>
+<body onload="convertCurrency();">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="C:/Users/user/Desktop/HTML/home.html">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+         <a class="navbar-brand" href="C:/Users/user/Desktop/HTML/index.html">Converter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Send Money</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Currency of Different Countries
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Australian Dollar</a></li>
+            <li><a class="dropdown-item" href="#">Bulgarian Lev</a></li>
+            <li><a class="dropdown-item" href="#">Canadian Dollar</a></li>
+            <li><a class="dropdown-item" href="#">Danish Krone</a></li>
+            <li><a class="dropdown-item" href="#">Indian Rupee</a></li>
+            <li><a class="dropdown-item" href="#">Japanese Yen</a></li>
+            <li><a class="dropdown-item" href="#">Lsraeli New Shekel</a></li>
+            <li><a class="dropdown-item" href="#">Philippine Peso</a></li>
+            <li><a class="dropdown-item" href="#">Russian Ruble</a></li>
+            <li><a class="dropdown-item" href="#">Swiss Franc</a></li>
+            <li><a class="dropdown-item" href="#">US dollar</a></li>
+          </ul>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+	<div class="bak">
+		<h1 class="hed">Currency Converter by Ramgopal</h1>
+		<div class="red">
+		<p>This website arose from the Free Currency Converter API since several people already asked for certain features which need a more performant server. This service is focused on people who need production-ready currency converter API. Rest assured that the free service will remain free forever but its resources are shared among all users who are accessing the free exchange rate API which is not controlled nor monitored. On the otherhand, this server is only shared with premium users and does not share resources with the free server. Performance is regularly monitored and server is scaled and upgraded as needed.</p>
+		<p>I still believe in free services so the base prices of the plans are only to help maintain the cost of the premium server (based on my computations) and it's still up to you if you want to give a tip for my coffee. My aim is to provide an easy-to-use and cost-effective API for currency exchange rate. This group of servers costs higher to maintain because it's much faster and can be scaled easily depending on the number of users and requests.</p>
+		<p>For quick API samples (JSON and JSONP support), go to Free Currency Converter API website. You may check the Documentation for more information. Feel free to contact me if you have a question and I'll try to respond as soon as I can.</p>
+		<p>Interested in this premium service? Go to pricing page to learn more about the different options you have which includes faster refresh-rate, real-time updates, or even a dedicated server. Or you can try the free service without the need to have an access token.</p>
+		<p>Please note that the services here are provided as is and without warranty (See Terms of Service). You only pay for the cost of the server. But I will try to help to the best of my ability if you need any support.</p>
+	</div>
+	</div>
+
+	<div class="ght"><h4 class="copy">Copyright &copy Ramgopal B.I.T. Sindri</h4></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
